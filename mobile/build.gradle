@@ -50,6 +50,10 @@ dependencies {
 
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation "android.arch.persistence.room:testing:1.0.0"
+    androidTestImplementation 'com.android.support:support-annotations:27.0.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test:rules:1.0.1'
 
     wearApp project(':wear')
     implementation 'com.google.android.gms:play-services-wearable:+'
