@@ -1,10 +1,12 @@
-package com.androidhipster.node_monitor
+package com.androidhipster.node_monitor.ui
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import com.androidhipster.node_monitor.R
 import kotlinx.android.synthetic.main.activity_welcome.*
 
 class WelcomeActivity : AppCompatActivity() {
@@ -14,9 +16,13 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_welcome)
         setSupportActionBar(toolbar)
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                addNewNode(view)
         }
+    }
+
+    private fun addNewNode(view: View) {
+        /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()*/
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -31,9 +37,12 @@ class WelcomeActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
 
         return when (item.itemId) {
-            R.id.action_settings ->
+            R.id.action_settings -> {
                 return true
-            else -> super.onOptionsItemSelected(item)
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
         }
     }
 }
