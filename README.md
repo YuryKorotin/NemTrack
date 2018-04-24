@@ -12,8 +12,10 @@ Notificating in app should provide nem users with information about network grow
 
 ## Features
 
+- [ ] Total list of available(added) NIS
+- [ ] Adding NIS to list for tracking
 - [ ] Simple screen with short node status
-- [ ] Detailed information screen
+- [ ] Detailed information for NIS
 - [ ] Screen with preferences
 - [ ] Conrol panel
 - [ ] Logs panel
