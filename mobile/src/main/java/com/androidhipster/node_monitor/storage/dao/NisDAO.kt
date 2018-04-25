@@ -11,7 +11,7 @@ import com.androidhipster.node_monitor.storage.models.NisData
 @Dao
 interface NisDAO {
     @Query("select * from nisdata")
-    fun getAllGroceryListItems() : LiveData<List<NisData>>
+    fun getAllNisItems() : LiveData<List<NisData>>
 
     @Insert
     fun add(item: NisData)

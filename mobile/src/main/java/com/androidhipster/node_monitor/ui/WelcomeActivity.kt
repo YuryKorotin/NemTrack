@@ -2,19 +2,29 @@ package com.androidhipster.node_monitor.ui
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.androidhipster.node_monitor.R
+import com.github.salomonbrys.kodein.Kodein
+import com.github.salomonbrys.kodein.android.KodeinFragmentActivity
+import com.github.salomonbrys.kodein.bind
+import com.github.salomonbrys.kodein.instance
 import kotlinx.android.synthetic.main.activity_welcome.*
 
-class WelcomeActivity : AppCompatActivity() {
+class WelcomeActivity : KodeinFragmentActivity() {
+
+    override fun provideOverridingModule(): Kodein.Module = Kodein.Module {
+        bind<FragmentActivity>("Activity") with instance(this@WelcomeActivity)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_welcome)
-        setSupportActionBar(toolbar)
+        setActionBar(toolbar)
         fab.setOnClickListener { view ->
                 addNewNode(view)
         }
