@@ -48,6 +48,14 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.0.6'
     implementation 'com.squareup.retrofit2:converter-moshi:2.0.0'
 
+    implementation 'com.hannesdorfmann.mosby3:mvi:3.1.0'
+    implementation 'com.hannesdorfmann.mosby3:mvp:3.1.0'
+    implementation 'com.hannesdorfmann.mosby3:viewstate:3.1.0'
+
+    implementation 'com.hannesdorfmann.mosby3:mvp-lce:3.1.0'
+    implementation 'com.hannesdorfmann.mosby3:mvp-nullobject-presenter:3.1.0'
+    implementation 'com.hannesdorfmann.mosby3:mvp-queuing-presenter:3.1.0'
+
     //Lifecycles, Livedata, ViewModel
     implementation "android.arch.lifecycle:extensions:1.0.0"
     kapt "android.arch.lifecycle:compiler:1.0.0"
