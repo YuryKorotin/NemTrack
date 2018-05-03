@@ -40,13 +40,21 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.android.support:design:27.0.2'
 
-    implementation 'com.github.salomonbrys.kodein:kodein:4.1.0'
-    implementation 'com.github.salomonbrys.kodein:kodein-android:4.1.0'
+    implementation 'org.kodein.di:kodein-di-generic-jvm:5.0.0'
+    implementation 'org.kodein.di:kodein-di-framework-android:5.0.0'
 
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.0.6'
     implementation 'com.squareup.retrofit2:converter-moshi:2.0.0'
+
+    implementation 'com.hannesdorfmann.mosby3:mvi:3.1.0'
+    implementation 'com.hannesdorfmann.mosby3:mvp:3.1.0'
+    implementation 'com.hannesdorfmann.mosby3:viewstate:3.1.0'
+
+    implementation 'com.hannesdorfmann.mosby3:mvp-lce:3.1.0'
+    implementation 'com.hannesdorfmann.mosby3:mvp-nullobject-presenter:3.1.0'
+    implementation 'com.hannesdorfmann.mosby3:mvp-queuing-presenter:3.1.0'
 
     //Lifecycles, Livedata, ViewModel
     implementation "android.arch.lifecycle:extensions:1.0.0"
