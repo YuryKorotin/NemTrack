@@ -1,5 +1,6 @@
 package com.androidhipster.node_monitor.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.FragmentActivity
@@ -9,24 +10,26 @@ import android.view.MenuItem
 import android.view.View
 import com.androidhipster.node_monitor.R
 import com.github.salomonbrys.kodein.Kodein
+import com.github.salomonbrys.kodein.android.KodeinAppCompatActivity
 import com.github.salomonbrys.kodein.android.KodeinFragmentActivity
 import com.github.salomonbrys.kodein.bind
 import com.github.salomonbrys.kodein.instance
 import kotlinx.android.synthetic.main.activity_welcome.*
 
-class WelcomeActivity : KodeinFragmentActivity() {
+class WelcomeActivity : KodeinAppCompatActivity() {
 
     override fun provideOverridingModule(): Kodein.Module = Kodein.Module {
         bind<FragmentActivity>("Activity") with instance(this@WelcomeActivity)
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_welcome)
         setActionBar(toolbar)
         fab.setOnClickListener { view ->
-                addNewNode(view)
+            addNewNode(view)
         }
     }
 

@@ -2,6 +2,7 @@ package com.androidhipster.node_monitor.net
 
 import com.androidhipster.node_monitor.net.models.NodesResponse
 import com.androidhipster.node_monitor.utils.Consts
+import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -10,5 +11,5 @@ import retrofit2.http.GET
  */
 interface NisService {
     @GET(Consts.NODE_LIST)
-    fun nodes() : Call<NodesResponse>
+    fun nodes() : Observable<NodesResponse>
 }
