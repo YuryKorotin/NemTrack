@@ -13,10 +13,10 @@ import org.kodein.di.generic.provider
  */
 
 fun createListModule(fragment: Fragment) = Kodein.Module {
-    bind<NisViewModel>() with provider {
+    /*bind<NisViewModel>() with provider {
         val factory = NisViewModel.Fabric(instance())
         ViewModelProviders.of(fragment, factory)[NisViewModel::class.java]
-    }
+    }*/
 
     /*bind<SelectedId>() with provider {
         ViewModelProviders.of(instance<FragmentActivity>("Activity"))[SelectedId::class.java]

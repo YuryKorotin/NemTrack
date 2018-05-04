@@ -12,7 +12,7 @@ import java.util.*
  */
 
 class NisServiceDecorator(val service: NisService) {
-    open fun getNodes() : Observable<NodesResponse> {
+    fun getNodes() : Observable<NodesResponse> {
         return service.nodes();
     }
 }

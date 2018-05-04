@@ -38,9 +38,10 @@ class NisListFragment : MviFragment<NisListView, NisListPresenter>(),
 
     override val kodein by closestKodein()
 
+    val presenter: NisListPresenter by instance()
 
     override fun createPresenter(): NisListPresenter {
-        return kodein.instance<NisListPresenter>() as NisListPresenter
+        return presenter
     }
 
     override fun loadIntents(): Observable<String> {
