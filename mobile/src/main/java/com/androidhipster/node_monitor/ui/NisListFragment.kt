@@ -1,9 +1,13 @@
 package com.androidhipster.node_monitor.ui
 
+import android.os.Bundle
 import android.support.transition.TransitionManager
 import android.support.v4.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.androidhipster.node_monitor.NemTrackApplication
+import com.androidhipster.node_monitor.R
 import com.androidhipster.node_monitor.net.models.nis.NisNode
 import com.androidhipster.node_monitor.view.nis_list.NisListPresenter
 import com.androidhipster.node_monitor.view.nis_list.NisListView
@@ -39,6 +43,17 @@ class NisListFragment : MviFragment<NisListView, NisListPresenter>(),
 
     override fun loadIntents(): Observable<String> {
         return Observable.just(arguments!!.getString(NODE_NAME));
+    }
+
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(
+                R.layout.fragment_nis_list,
+                container,
+                false)
+        return view;
+
     }
 
     override fun render(nisListViewState: NisListViewState) {
