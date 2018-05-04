@@ -16,8 +16,8 @@ class NisViewModel(val appDatabase: AppDatabase) : ViewModel() {
     fun find(name : String) = appDatabase.nisDao().find(name)
     fun update(item: NisData) = appDatabase.nisDao().update(item)
 
-    class Fabric(val appDataBase: AppDatabase) : ViewModelProvider.NewInstanceFactory() {
+    /*class Fabric(val appDataBase: AppDatabase) : ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T =
                 NisViewModel(appDataBase) as T
-    }
+    }*/
 }

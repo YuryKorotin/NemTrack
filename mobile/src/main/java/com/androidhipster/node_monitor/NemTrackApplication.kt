@@ -21,14 +21,14 @@ import retrofit2.Retrofit
  */
 class NemTrackApplication : Application(), KodeinAware {
     override val kodein: Kodein = Kodein {
-        bind<AppDatabase>() with eagerSingleton {
+        /*bind<AppDatabase>() with eagerSingleton {
             Room.databaseBuilder(
                     this@NemTrackApplication,
                     AppDatabase::class.java,
                     "nem_db")
                     .allowMainThreadQueries()
                     .build()
-        }
+        }*/
 
         bind<Retrofit>() with provider {
              Retrofit.Builder().baseUrl(Consts.DEFAULT_NIS_ROOT)
