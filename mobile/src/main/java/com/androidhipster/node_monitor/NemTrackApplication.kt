@@ -7,13 +7,12 @@ import com.androidhipster.node_monitor.net.NisServiceDecorator
 import com.androidhipster.node_monitor.storage.database.AppDatabase
 import com.androidhipster.node_monitor.utils.Consts
 import com.androidhipster.node_monitor.view.nis_list.NisListPresenter
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.KodeinAware
-import com.github.salomonbrys.kodein.bind
-import com.github.salomonbrys.kodein.bindings.EagerSingletonBinding
-import com.github.salomonbrys.kodein.eagerSingleton
 import retrofit2.converter.moshi.MoshiConverterFactory
 import okhttp3.OkHttpClient
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.eagerSingleton
 import retrofit2.Retrofit
 
 

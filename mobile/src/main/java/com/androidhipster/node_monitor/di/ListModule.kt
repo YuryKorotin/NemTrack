@@ -3,10 +3,10 @@ package com.androidhipster.node_monitor.di
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v4.app.Fragment
 import com.androidhipster.node_monitor.ui.models.NisViewModel
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.bind
-import com.github.salomonbrys.kodein.instance
-import com.github.salomonbrys.kodein.provider
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.provider
 
 /**
  * Created by yurykorotin on 4/25/18.

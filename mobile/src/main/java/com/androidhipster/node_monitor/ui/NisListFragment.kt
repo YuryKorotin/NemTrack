@@ -15,10 +15,12 @@ import com.androidhipster.node_monitor.view.nis_list.NisListViewState
 import com.hannesdorfmann.mosby3.mvi.MviFragment
 import io.reactivex.Observable
 import io.reactivex.Single
+import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.KodeinContext
 import org.kodein.di.generic.kcontext
 import org.kodein.di.android.closestKodein
+import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import java.util.*
 
@@ -53,7 +55,6 @@ class NisListFragment : MviFragment<NisListView, NisListPresenter>(),
                 container,
                 false)
         return view;
-
     }
 
     override fun render(nisListViewState: NisListViewState) {
@@ -85,6 +86,10 @@ class NisListFragment : MviFragment<NisListView, NisListPresenter>(),
         //loadingView.setVisibility(View.GONE)
         //errorView.setVisibility(View.GONE)
         //recyclerView.setVisibility(View.VISIBLE)
+    }
+
+    val electricHeaterModule = Kodein.Module {
+        //bind<Heater>() with singleton { ElectricHeater(instance()) }
     }
 
 }
