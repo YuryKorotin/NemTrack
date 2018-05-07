@@ -31,13 +31,9 @@ class NemTrackApplication : Application(), KodeinAware {
                     .build()
         }*/
 
-        bind<HttpLoggingInterceptor> (
-                HttpLoggingInterceptor()
-        )
-
         bind<Retrofit>() with provider {
              Retrofit.Builder().baseUrl(Consts.DEFAULT_NIS_ROOT)
-                     .client(OkHttpClient.Builder().addInterceptor(instance()).build())
+                     .client(OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor()).build())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(MoshiConverterFactory.create())
                     .build()
