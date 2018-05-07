@@ -3,6 +3,8 @@ package com.androidhipster.node_monitor.ui
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.transition.TransitionManager
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +22,8 @@ import org.kodein.di.KodeinContext
 import org.kodein.di.generic.kcontext
 import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.instance
+import com.androidhipster.node_monitor.view.nis_list.NisListAdapter
+
 
 /**
  * Created by yurykorotin on 4/25/18.
@@ -36,6 +40,8 @@ class NisListFragment : MviFragment<NisListView, NisListPresenter>(),
     override val kodein by closestKodein()
 
     val presenter: NisListPresenter by instance()
+    lateinit var adapter: NisListAdapter
+    lateinit var nislistview: RecyclerView
 
     override fun createPresenter(): NisListPresenter {
         return presenter
@@ -54,6 +60,14 @@ class NisListFragment : MviFragment<NisListView, NisListPresenter>(),
                 R.layout.fragment_nis_list,
                 container,
                 false)
+
+        val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        adapter = NisListAdapter(inflater)
+        nislistview = view.findViewById(R.id.nislistview)
+        nislistview.setAdapter(adapter)
+        nislistview.setLayoutManager(layoutManager)
+        //recyclerView.addItemDecoration(GridSpacingItemDecoration(spanCount,
+        //        resources.getDimensionPixelSize(R.dimen.grid_spacing), true))
         return view;
     }
 
@@ -73,25 +87,22 @@ class NisListFragment : MviFragment<NisListView, NisListPresenter>(),
         TransitionManager.beginDelayedTransition(view as ViewGroup)
         loadingView.setVisibility(View.GONE)
         errorView.setVisibility(View.VISIBLE)
-        //recyclerView.setVisibility(View.GONE)
+        nislistview.setVisibility(View.GONE)
     }
 
     private fun renderLoading() {
         TransitionManager.beginDelayedTransition(view as ViewGroup)
         loadingView.setVisibility(View.VISIBLE)
         errorView.setVisibility(View.GONE)
-        //recyclerView.setVisibility(View.GONE)
+        nislistview.setVisibility(View.GONE)
     }
 
-    private fun renderData(products: Array<NisNode>) {
-        //adapter.setProducts(products)
-        //adapter.notifyDataSetChanged()
+    private fun renderData(nodes: Array<NisNode>) {
+        adapter.nisItems = nodes
+        adapter.notifyDataSetChanged()
         TransitionManager.beginDelayedTransition(view as ViewGroup)
         loadingView.setVisibility(View.GONE)
         errorView.setVisibility(View.GONE)
         //recyclerView.setVisibility(View.VISIBLE)
-
-        Snackbar.make(view as ViewGroup, products.toString(), Snackbar.LENGTH_LONG)
-                .setAction("OK", null).show()
     }
 }
