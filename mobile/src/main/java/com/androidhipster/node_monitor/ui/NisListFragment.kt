@@ -45,7 +45,9 @@ class NisListFragment : MviFragment<NisListView, NisListPresenter>(),
     }
 
     override fun loadIntents(): Observable<String> {
-        return Observable.just(arguments!!.getString(NODE_NAME));
+        val nodeName = arguments?.getString(NODE_NAME)
+
+        return Observable.just(nodeName ?: "");
     }
 
     override fun onCreateView(inflater: LayoutInflater,

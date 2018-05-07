@@ -13,7 +13,8 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.*
 import retrofit2.Retrofit
-
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 
 /**
@@ -30,10 +31,14 @@ class NemTrackApplication : Application(), KodeinAware {
                     .build()
         }*/
 
+        bind<HttpLoggingInterceptor> (
+                HttpLoggingInterceptor()
+        )
+
         bind<Retrofit>() with provider {
              Retrofit.Builder().baseUrl(Consts.DEFAULT_NIS_ROOT)
-                    //.client(OkHttpClient.Builder().addInterceptor(httpLogger).build())
-                    //.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                     .client(OkHttpClient.Builder().addInterceptor(instance()).build())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(MoshiConverterFactory.create())
                     .build()
         }

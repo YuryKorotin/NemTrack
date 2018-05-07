@@ -8,5 +8,5 @@
 
     <include layout="@layout/collection_progress_view"/>
 
-    <inclue layout="@layout/collection_content_view"/>
+    <include layout="@layout/collection_content_view"/>
 </android.support.constraint.ConstraintLayout>

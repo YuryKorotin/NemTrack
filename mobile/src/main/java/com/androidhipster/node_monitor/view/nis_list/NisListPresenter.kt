@@ -19,15 +19,13 @@ class NisListPresenter(val apiService: NisServiceDecorator) :
         val nisListViewStateObservable = intent(NisListView::loadIntents)
                 .flatMap { nodeName ->
                             apiService.getNodes()
-                            .subscribeOn(Schedulers.io())
-                            .map {item -> NisListViewState.DataState(item.active)}
-
-
-                            .cast(NisListViewState::class.java)
-                            .startWith(NisListViewState.LoadingState())
-                                    .onErrorReturn({
-                                        NisListViewState.ErrorState(it)
-                                    })
+                                    .subscribeOn(Schedulers.io())
+                                    .map { item ->
+                                        NisListViewState.DataState(item.active)
+                                    }
+                                    .cast(NisListViewState::class.java)
+                                    .startWith(NisListViewState.LoadingState())
+                                    .onErrorReturn(NisListViewState::ErrorState)
                 }
                 .observeOn(AndroidSchedulers.mainThread())
 
