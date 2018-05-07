@@ -61,7 +61,7 @@ class NisListFragment : MviFragment<NisListView, NisListPresenter>(),
                 container,
                 false)
 
-        val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         adapter = NisListAdapter(inflater)
         nislistview = view.findViewById(R.id.nislistview)
         nislistview.setAdapter(adapter)
@@ -103,6 +103,6 @@ class NisListFragment : MviFragment<NisListView, NisListPresenter>(),
         TransitionManager.beginDelayedTransition(view as ViewGroup)
         loadingView.setVisibility(View.GONE)
         errorView.setVisibility(View.GONE)
-        //recyclerView.setVisibility(View.VISIBLE)
+        nislistview.setVisibility(View.VISIBLE)
     }
 }
