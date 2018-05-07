@@ -33,7 +33,7 @@ class WelcomeActivity : AppCompatActivity(), KodeinAware {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_welcome)
-        setActionBar(toolbar)
+        setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
             addNewNode(view)
