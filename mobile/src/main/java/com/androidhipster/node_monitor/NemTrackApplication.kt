@@ -7,15 +7,14 @@ import com.androidhipster.node_monitor.net.NisServiceDecorator
 import com.androidhipster.node_monitor.storage.database.AppDatabase
 import com.androidhipster.node_monitor.utils.Consts
 import com.androidhipster.node_monitor.view.nis_list.NisListPresenter
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.KodeinAware
-import com.github.salomonbrys.kodein.bind
-import com.github.salomonbrys.kodein.bindings.EagerSingletonBinding
-import com.github.salomonbrys.kodein.eagerSingleton
 import retrofit2.converter.moshi.MoshiConverterFactory
 import okhttp3.OkHttpClient
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.generic.*
 import retrofit2.Retrofit
-
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 
 /**
@@ -23,23 +22,30 @@ import retrofit2.Retrofit
  */
 class NemTrackApplication : Application(), KodeinAware {
     override val kodein: Kodein = Kodein {
-        bind<AppDatabase>() with eagerSingleton {
+        /*bind<AppDatabase>() with eagerSingleton {
             Room.databaseBuilder(
                     this@NemTrackApplication,
                     AppDatabase::class.java,
                     "nem_db")
                     .allowMainThreadQueries()
                     .build()
-        }
-        bind<NisListPresenter>() with eagerSingleton {
-            val retrofit = Retrofit.Builder().baseUrl(Consts.DEFAULT_NIS_ROOT)
-                    //.client(OkHttpClient.Builder().addInterceptor(httpLogger).build())
-                    //.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        }*/
+
+        bind<Retrofit>() with provider {
+             Retrofit.Builder().baseUrl(Consts.DEFAULT_NIS_ROOT)
+                     .client(OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor()).build())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(MoshiConverterFactory.create())
                     .build()
-            val backendApi = retrofit.create(NisService::class.java)
-            val backendApiDecorator = NisServiceDecorator(backendApi)
-            return@eagerSingleton NisListPresenter(backendApiDecorator)
+        }
+
+        bind<NisServiceDecorator>() with provider {
+            val retrofit: Retrofit = instance()
+            NisServiceDecorator(retrofit.create(NisService::class.java))
+        }
+
+        bind<NisListPresenter>() with singleton {
+            NisListPresenter(instance())
         }
     }
 }

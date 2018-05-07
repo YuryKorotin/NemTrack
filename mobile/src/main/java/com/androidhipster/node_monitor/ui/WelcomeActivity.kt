@@ -9,27 +9,43 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.androidhipster.node_monitor.R
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.android.KodeinAppCompatActivity
-import com.github.salomonbrys.kodein.android.KodeinFragmentActivity
-import com.github.salomonbrys.kodein.bind
-import com.github.salomonbrys.kodein.instance
 import kotlinx.android.synthetic.main.activity_welcome.*
+import org.kodein.di.Copy
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.KodeinContext
+import org.kodein.di.android.closestKodein
+import org.kodein.di.android.retainedKodein
+import org.kodein.di.generic.kcontext
 
-class WelcomeActivity : KodeinAppCompatActivity() {
+class WelcomeActivity : AppCompatActivity(), KodeinAware {
 
-    override fun provideOverridingModule(): Kodein.Module = Kodein.Module {
-        bind<FragmentActivity>("Activity") with instance(this@WelcomeActivity)
+    override val kodeinContext: KodeinContext<*> = kcontext(this)
+
+    private val _parentKodein by closestKodein()
+
+    override val kodein: Kodein by retainedKodein {
+        extend(_parentKodein, copy = Copy.All)
+        //import(thermosiphonModule)
     }
 
-    @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_welcome)
-        setActionBar(toolbar)
-        fab.setOnClickListener { view ->
+        setSupportActionBar(toolbar)
+
+        /*fab.setOnClickListener { view ->
             addNewNode(view)
+        }*/
+
+        if(savedInstanceState == null) {
+            //log.log("Going to brew coffee using $coffeeMaker")
+
+            supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.nis_list_fragment, NisListFragment())
+                    .commit()
         }
     }
 
