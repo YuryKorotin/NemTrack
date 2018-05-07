@@ -35,9 +35,9 @@ class WelcomeActivity : AppCompatActivity(), KodeinAware {
         setContentView(R.layout.activity_welcome)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
+        /*fab.setOnClickListener { view ->
             addNewNode(view)
-        }
+        }*/
 
         if(savedInstanceState == null) {
             //log.log("Going to brew coffee using $coffeeMaker")
